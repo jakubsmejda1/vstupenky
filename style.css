@@ -1,0 +1,203 @@
+/* OBECNÉ STYLY */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* BANNER */
+.banner-container {
+    position: relative;
+    width: 100%;
+    max-height: 400px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #4a148c 0%, #880e4f 100%);
+}
+
+.banner-text-overlay {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px 40px !important;
+    border-radius: 8px;
+}
+
+.banner-text-overlay h2 {
+    font-size: 2em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* KARTY VSTUPENEK */
+.ticket-card {
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ticket-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.ticket-price {
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.ticket-btn {
+    transition: all 0.3s ease;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.ticket-btn:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+/* NÁKUPNÍ KOŠÍK */
+#cart-container {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-name {
+    font-weight: bold;
+    color: #4a148c;
+}
+
+.cart-item-price {
+    font-size: 1.1em;
+    color: #880e4f;
+    font-weight: bold;
+}
+
+.cart-item-remove {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.2s ease;
+}
+
+.cart-item-remove:hover {
+    background-color: #ee5a52;
+}
+
+/* FORMULÁŘ */
+#order-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#order-form input {
+    margin-bottom: 15px;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+#order-form input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#order-form input:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* TLAČÍTKO OBJEDNÁVKY */
+#submit-btn {
+    transition: all 0.3s ease;
+    padding: 15px !important;
+    font-size: 1.1em;
+}
+
+#submit-btn:hover {
+    transform: scale(1.02);
+    background-color: #e0e0e0 !important;
+}
+
+#submit-btn:active {
+    transform: scale(0.98);
+}
+
+/* FOOTER */
+footer {
+    margin-top: 50px;
+}
+
+footer h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em !important;
+    }
+
+    .banner-text-overlay h2 {
+        font-size: 1.3em;
+    }
+
+    .w3-col {
+        margin-bottom: 20px;
+    }
+    
+    footer {
+        text-align: center;
+    }
+}
+
+/* ANIMACE */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ticket-card {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* CUSTOM COLORS */
+.w3-deep-purple {
+    background-color: #4a148c !important;
+}
+
+.w3-text-deep-purple {
+    color: #4a148c !important;
+}

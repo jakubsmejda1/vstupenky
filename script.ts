@@ -78,8 +78,13 @@ class VIPTicket extends Ticket {
     }
 
     //metody
-    
+
     getDescription(): string {
         return `Vstupenka pro ${this.name} za cenu ${this.price} Kč.`;
     }
 }
+//testování
+console.log(new AdultTicket("dospělý", 150).getDescription());
+console.log(new ChildTicket("dětský", 150).getDescription());
+console.log(new SeniorTicket("senior", 150).getDescription());
+console.log(new VIPTicket("VIP", 150).getDescription());

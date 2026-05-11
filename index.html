@@ -3,10 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vstupenky</title>
+    <title>Národní Divadlo - Prodej Vstupenek</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="w3-light-grey">
+    <!-- HEADER -->
+    <header class="w3-container w3-deep-purple w3-padding-64">
+        <div class="w3-center">
+            <h1 class="w3-text-white" style="font-size: 3em; margin: 0;">NÁRODNÍ DIVADLO</h1>
+            <p class="w3-text-white-50" style="font-size: 1.2em; margin-top: 10px;">Váš zdroj nejlepších vstupenek</p>
+        </div>
+    </header>
+
+    <!-- BANNER SEKCE - Prostor na fotky -->
+    <div class="banner-container w3-display-container">
+        <img id="banner-image" src="https://via.placeholder.com/1200x400?text=Divadlo+Národní" alt="Divadelní plakát" class="w3-image" style="width: 100%; height: auto; display: block;">
+        <div class="w3-display-bottomleft w3-container w3-text-white w3-padding-large banner-text-overlay">
+            <h2>Tento týden: Nový příběh se začíná psát</h2>
+        </div>
+    </div>
+
+    <!-- HLAVNÍ OBSAH -->
+    <div class="w3-container w3-padding-64">
+        <!-- ÚVODNÍ TEXT -->
+        <div class="w3-card-4 w3-padding-32 w3-margin-bottom w3-light-grey">
+            <h2 class="w3-text-deep-purple w3-center">Vítejte v našem divadle</h2>
+            <p class="w3-center w3-text-grey" style="font-size: 1.1em;">
+                Nabízíme výjimečné divadelní zážitky. Vyberte si z naší bohaté nabídky a užijte si nezapomenutelný večer.
+            </p>
+        </div>
+
+        <!-- SEKCE VSTUPENEK -->
+        <h2 class="w3-text-deep-purple w3-center w3-margin-top w3-margin-bottom">Naši Vstupenky</h2>
+        
+        <div class="w3-row-padding">
+            <!-- DOSPĚLÝ -->
+            <div class="w3-col m6 l3 w3-margin-bottom">
+                <div class="w3-card-4 ticket-card w3-hover-shadow">
+                    <div class="w3-container w3-deep-purple w3-text-white w3-center">
+                        <h3>👤 Dospělí</h3>
+                    </div>
+                    <div class="w3-container w3-padding-32">
+                        <p class="w3-center w3-text-grey">Plná cena vstupného</p>
+                        <p class="w3-center w3-xxlarge w3-text-deep-purple ticket-price">150 Kč</p>
+                        <button class="w3-button w3-full w3-deep-purple w3-text-white w3-round ticket-btn" data-type="adult">Koupit</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DĚTI -->
+            <div class="w3-col m6 l3 w3-margin-bottom">
+                <div class="w3-card-4 ticket-card w3-hover-shadow">
+                    <div class="w3-container w3-blue w3-text-white w3-center">
+                        <h3>👶 Děti</h3>
+                    </div>
+                    <div class="w3-container w3-padding-32">
+                        <p class="w3-center w3-text-grey">Sleva pro děti</p>
+                        <p class="w3-center w3-xxlarge w3-text-blue ticket-price">112.50 Kč</p>
+                        <button class="w3-button w3-full w3-blue w3-text-white w3-round ticket-btn" data-type="child">Koupit</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SENIOŘI -->
+            <div class="w3-col m6 l3 w3-margin-bottom">
+                <div class="w3-card-4 ticket-card w3-hover-shadow">
+                    <div class="w3-container w3-teal w3-text-white w3-center">
+                        <h3>👴 Senioři</h3>
+                    </div>
+                    <div class="w3-container w3-padding-32">
+                        <p class="w3-center w3-text-grey">Sleva pro seniory</p>
+                        <p class="w3-center w3-xxlarge w3-text-teal ticket-price">112.50 Kč</p>
+                        <button class="w3-button w3-full w3-teal w3-text-white w3-round ticket-btn" data-type="senior">Koupit</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIP -->
+            <div class="w3-col m6 l3 w3-margin-bottom">
+                <div class="w3-card-4 ticket-card w3-hover-shadow w3-border-4" style="border-color: #FFD700 !important;">
+                    <div class="w3-container w3-amber w3-text-white w3-center">
+                        <h3>⭐ VIP</h3>
+                    </div>
+                    <div class="w3-container w3-padding-32">
+                        <p class="w3-center w3-text-grey">Prémiová nabídka</p>
+                        <p class="w3-center w3-xxlarge w3-text-amber ticket-price">225 Kč</p>
+                        <button class="w3-button w3-full w3-amber w3-text-white w3-round ticket-btn" data-type="vip">Koupit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NÁKUPNÍ KOŠÍK / SHRNUTÍ -->
+        <div class="w3-row-padding w3-margin-top">
+            <div class="w3-col m8 w3-margin-bottom">
+                <div class="w3-card-4 w3-light-grey w3-padding-32">
+                    <h2 class="w3-text-deep-purple">Váš nákup</h2>
+                    <div id="cart-container" class="w3-border-top w3-border-bottom w3-padding-16" style="min-height: 150px;">
+                        <p class="w3-text-grey w3-center">Vyberte vstupenky a budou se zde zobrazovat...</p>
+                    </div>
+                    <div class="w3-padding-16">
+                        <p class="w3-large">Celková cena: <span class="w3-text-deep-purple w3-xxlarge" id="total-price">0</span> Kč</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="w3-container w3-deep-purple w3-padding-32 w3-margin-top">
+        <div class="w3-row-padding w3-center">
+            <div class="w3-col m4 w3-text-white">
+                <h3>Kontakt</h3>
+                <p>📞 +420 123 456 789</p>
+                <p>📧 info@divadlo.cz</p>
+            </div>
+            <div class="w3-col m4 w3-text-white">
+                <h3>Hodiny Provozu</h3>
+                <p>Po-Pá: 9:00 - 18:00</p>
+                <p>So-Ne: 10:00 - 16:00</p>
+            </div>
+            <div class="w3-col m4 w3-text-white">
+                <h3>Sledujte nás</h3>
+                <p>📱 Facebook | Instagram | Twitter</p>
+            </div>
+        </div>
+        <hr class="w3-opacity">
+        <p class="w3-center w3-text-white-50">© 2024 Národní Divadlo. Všechna práva vyhrazena.</p>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
