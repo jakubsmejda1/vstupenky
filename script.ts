@@ -3,7 +3,7 @@ abstract class Ticket {
     //data
 
     protected name: string;
-    protected price: number = 150;      //základní hodnota, od které se odvýjí ceny
+    protected price: number;      //základní hodnota, od které se odvýjí ceny
 
     //consturctor
 
@@ -14,12 +14,14 @@ abstract class Ticket {
 
     //metody
 
-    abstract getDescription(): string       //abstraktní metoda pro získání popisu vstupenky
     getPrice(): number {
         return this.price;
     }
     getname(): string{
         return this.name;
+    }
+    getDescription(): string {
+        return `Vstupenka pro ${this.name} za cenu ${this.price} Kč.`;
     }
 }
 class AdultTicket extends Ticket {
@@ -32,10 +34,6 @@ class AdultTicket extends Ticket {
         }
 
     //metody
-
-    getDescription(): string {
-        return `Vstupenka pro ${this.name} za cenu ${this.price} Kč.`;
-    }
 }
 class ChildTicket extends Ticket {
 
@@ -47,10 +45,6 @@ class ChildTicket extends Ticket {
     }
 
     //metody
-
-    getDescription(): string {
-        return `Vstupenka pro ${this.name} za cenu ${this.price} Kč.`;
-    }
 }
 class SeniorTicket extends Ticket {
 
@@ -62,11 +56,6 @@ class SeniorTicket extends Ticket {
     }
 
     //metody
-
-    getDescription(): string {
-        return `Vstupenka pro ${this.name} za cenu ${this.price} Kč.`;
-    }
-
 }
 class VIPTicket extends Ticket {
 
@@ -78,13 +67,17 @@ class VIPTicket extends Ticket {
     }
 
     //metody
-
-    getDescription(): string {
-        return `Vstupenka pro ${this.name} za cenu ${this.price} Kč.`;
-    }
 }
+function vypsaniCen(price: number): void {
+document.getElementById("ticketPriceAdult")!.textContent = new AdultTicket("dospělý", price).getDescription();
+document.getElementById("ticketPriceChild")!.textContent = new ChildTicket("dětský", price).getDescription();
+document.getElementById("ticketPriceSenior")!.textContent = new SeniorTicket("senior", price).getDescription();
+document.getElementById("ticketPriceVIP")!.textContent = new VIPTicket("VIP", price).getDescription();
+};
+const ticket = new AdultTicket("základní", 160); //nelze vytvořit instanci abstraktní třídy, ale můžeme ji použít pro získání základní ceny
+vypsaniCen(ticket.getPrice());
 //testování
-console.log(new AdultTicket("dospělý", 150).getDescription());
-console.log(new ChildTicket("dětský", 150).getDescription());
-console.log(new SeniorTicket("senior", 150).getDescription());
-console.log(new VIPTicket("VIP", 150).getDescription());
+console.log(new AdultTicket("dospělý", 160).getDescription());
+console.log(new ChildTicket("dětský", 160).getDescription());
+console.log(new SeniorTicket("senior", 160).getDescription());
+console.log(new VIPTicket("VIP", 160).getDescription());
