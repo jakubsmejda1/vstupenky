@@ -1,6 +1,7 @@
 "use strict";
 class Ticket {
     //data
+    kosik = []; //globální pole pro uložení zakoupených vstupenek
     name;
     price; //základní hodnota, od které se odvýjí ceny
     //consturctor
@@ -8,7 +9,6 @@ class Ticket {
         this.name = name;
         this.price = price;
     }
-    //metody
     getPrice() {
         return this.price;
     }
@@ -25,12 +25,23 @@ class AdultTicket extends Ticket {
         super("dospělý", price);
         this.price = price * 1;
     }
+    //metody
+    pridatDoKosiku() {
+        this.kosik.push(new AdultTicket(this.name, this.price));
+        console.log(`Přidáno do košíku: ${this.getDescription()}`);
+        // implementace pro přidání dospělé vstupenky do košíku
+    }
 }
 class ChildTicket extends Ticket {
     //constructor
     constructor(name, price) {
         super("dětský", price);
         this.price = price * 0.75;
+    }
+    //metody
+    pridatDoKosiku() {
+        this.kosik.push(new ChildTicket(this.name, this.price));
+        console.log(`Přidáno do košíku: ${this.getDescription()}`);
     }
 }
 class SeniorTicket extends Ticket {
@@ -39,12 +50,22 @@ class SeniorTicket extends Ticket {
         super("senior", price);
         this.price = price * 0.75;
     }
+    //metody
+    pridatDoKosiku() {
+        this.kosik.push(new SeniorTicket(this.name, this.price));
+        console.log(`Přidáno do košíku: ${this.getDescription()}`);
+    }
 }
 class VIPTicket extends Ticket {
     //constructor
     constructor(name, price) {
         super("VIP", price);
         this.price = price * 1.5;
+    }
+    //metody
+    pridatDoKosiku() {
+        this.kosik.push(new VIPTicket(this.name, this.price));
+        console.log(`Přidáno do košíku: ${this.getDescription()}`);
     }
 }
 function vypsaniCen(price) {
@@ -55,7 +76,7 @@ function vypsaniCen(price) {
 }
 ;
 const ticket = new AdultTicket("základní", 160); //nelze vytvořit instanci abstraktní třídy, ale můžeme ji použít pro získání základní ceny
-vypsaniCen(ticket.getPrice());
+vypsaniCen(ticket.getPrice()); //vypsání cen pro všechny typy vstupenek na základě základní ceny
 //testování
 console.log(new AdultTicket("dospělý", 160).getDescription());
 console.log(new ChildTicket("dětský", 160).getDescription());
