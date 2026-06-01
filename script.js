@@ -1,7 +1,23 @@
 "use strict";
+// Položka v košíku (bez dalších násobků ceny)
+class CartItem {
+    name;
+    price;
+    constructor(name, price) {
+        this.name = name;
+        this.price = price;
+    }
+    getDescription() {
+        return `Vstupenka pro ${this.name} za cenu ${this.price} Kč.`;
+    }
+    getPrice() {
+        return this.price;
+    }
+}
+// Globální košík
+let globalKosik = [];
 class Ticket {
     //data
-    kosik = []; //globální pole pro uložení zakoupených vstupenek
     name;
     price; //základní hodnota, od které se odvýjí ceny
     //consturctor
@@ -27,9 +43,9 @@ class AdultTicket extends Ticket {
     }
     //metody
     pridatDoKosiku() {
-        this.kosik.push(new AdultTicket(this.name, this.price));
+        globalKosik.push(new CartItem(this.name, this.price));
         console.log(`Přidáno do košíku: ${this.getDescription()}`);
-        // implementace pro přidání dospělé vstupenky do košíku
+        vypsaniKosiku(globalKosik);
     }
 }
 class ChildTicket extends Ticket {
@@ -40,8 +56,9 @@ class ChildTicket extends Ticket {
     }
     //metody
     pridatDoKosiku() {
-        this.kosik.push(new ChildTicket(this.name, this.price));
+        globalKosik.push(new CartItem(this.name, this.price));
         console.log(`Přidáno do košíku: ${this.getDescription()}`);
+        vypsaniKosiku(globalKosik);
     }
 }
 class SeniorTicket extends Ticket {
@@ -52,8 +69,9 @@ class SeniorTicket extends Ticket {
     }
     //metody
     pridatDoKosiku() {
-        this.kosik.push(new SeniorTicket(this.name, this.price));
+        globalKosik.push(new CartItem(this.name, this.price));
         console.log(`Přidáno do košíku: ${this.getDescription()}`);
+        vypsaniKosiku(globalKosik);
     }
 }
 class VIPTicket extends Ticket {
@@ -64,19 +82,77 @@ class VIPTicket extends Ticket {
     }
     //metody
     pridatDoKosiku() {
-        this.kosik.push(new VIPTicket(this.name, this.price));
+        globalKosik.push(new CartItem(this.name, this.price));
         console.log(`Přidáno do košíku: ${this.getDescription()}`);
+        vypsaniKosiku(globalKosik);
     }
 }
 function vypsaniCen(price) {
-    document.getElementById("ticketPriceAdult").textContent = new AdultTicket("dospělý", price).getDescription();
-    document.getElementById("ticketPriceChild").textContent = new ChildTicket("dětský", price).getDescription();
-    document.getElementById("ticketPriceSenior").textContent = new SeniorTicket("senior", price).getDescription();
-    document.getElementById("ticketPriceVIP").textContent = new VIPTicket("VIP", price).getDescription();
+    const adult = new AdultTicket("dospělý", price);
+    const child = new ChildTicket("dětský", price);
+    const senior = new SeniorTicket("senior", price);
+    const vip = new VIPTicket("VIP", price);
+    document.getElementById("ticketPriceAdult").textContent = adult.getPrice() + " Kč";
+    document.getElementById("ticketPriceChild").textContent = child.getPrice() + " Kč";
+    document.getElementById("ticketPriceSenior").textContent = senior.getPrice() + " Kč";
+    document.getElementById("ticketPriceVIP").textContent = vip.getPrice() + " Kč";
 }
-;
-const ticket = new AdultTicket("základní", 160); //nelze vytvořit instanci abstraktní třídy, ale můžeme ji použít pro získání základní ceny
-vypsaniCen(ticket.getPrice()); //vypsání cen pro všechny typy vstupenek na základě základní ceny
+function vypsaniKosiku(kosik) {
+    console.log("Obsah košíku:");
+    const cartContainer = document.getElementById("cart-container");
+    let totalPrice = 0;
+    let html = "";
+    if (kosik.length === 0) {
+        html = "<p class='w3-text-grey w3-center'>Vyberte vstupenky a budou se zde zobrazovat...</p>";
+    }
+    else {
+        html = "<ul class='w3-ul'>";
+        kosik.forEach((ticket, index) => {
+            console.log(ticket.getDescription());
+            html += `<li class='w3-padding-small'>${ticket.getDescription()} <button class='w3-button w3-small w3-red' onclick='odebratZKosiku(${index})'>Odstranit</button></li>`;
+            totalPrice += ticket.getPrice();
+        });
+        html += "</ul>";
+    }
+    cartContainer.innerHTML = html;
+    document.getElementById("total-price").textContent = totalPrice.toString();
+}
+// Globální funkce pro přidání do košíku (volán z HTML)
+function pridatDoKosiku(type) {
+    switch (type) {
+        case 'adult':
+            new AdultTicket("dospělý", 160).pridatDoKosiku();
+            break;
+        case 'child':
+            new ChildTicket("dětský", 160).pridatDoKosiku();
+            break;
+        case 'senior':
+            new SeniorTicket("senior", 160).pridatDoKosiku();
+            break;
+        case 'vip':
+            new VIPTicket("VIP", 160).pridatDoKosiku();
+            break;
+    }
+}
+function odebratZKosiku(index) {
+    globalKosik.splice(index, 1);
+    vypsaniKosiku(globalKosik);
+}
+// Inicializace při načtení stránky
+window.addEventListener('DOMContentLoaded', () => {
+    const ticket = new AdultTicket("základní", 160);
+    wypsaniCen(ticket.getPrice());
+    vypsaniKosiku(globalKosik);
+});
+//testování
+console.log(new AdultTicket("dospělý", 160).getDescription());
+console.log(new ChildTicket("dětský", 160).getDescription());
+console.log(new SeniorTicket("senior", 160).getDescription());
+console.log(new VIPTicket("VIP", 160).getDescription());
+// Inicializace - zobrazení cen a prázdného košíku při načtení stránky
+const ticket = new AdultTicket("základní", 160);
+wypsaniCen(ticket.getPrice());
+vypsaniKosiku(globalKosik);
 //testování
 console.log(new AdultTicket("dospělý", 160).getDescription());
 console.log(new ChildTicket("dětský", 160).getDescription());
