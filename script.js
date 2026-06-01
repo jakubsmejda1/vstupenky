@@ -138,3 +138,12 @@ function odebratZKosiku(index) {
     globalKosik.splice(index, 1);
     vypsaniKosiku(globalKosik);
 }
+function zaplatit() {
+    const totalPrice = globalKosik.reduce((sum, item) => sum + item.getPrice(), 0);
+    if (globalKosik.length === 0) {
+        alert("Váš nákupní košík je prázdný! Vyberte prosím nějaké vstupenky.");
+    }
+    else {
+        alert(`Celková cena vašeho nákupu: ${totalPrice} Kč\n\nPokud chcete pokračovat v platbě, kontaktujte nás na info@divadlo.cz`);
+    }
+}
