@@ -163,26 +163,3 @@ function odebratZKosiku(index: number): void {
     globalKosik.splice(index, 1);
     vypsaniKosiku(globalKosik);
 }
-
-// Inicializace při načtení stránky
-window.addEventListener('DOMContentLoaded', () => {
-    const ticket = new AdultTicket("základní", 160);
-    wypsaniCen(ticket.getPrice());
-    vypsaniKosiku(globalKosik);
-});
-
-//testování
-console.log(new AdultTicket("dospělý", 160).getDescription());
-console.log(new ChildTicket("dětský", 160).getDescription());
-console.log(new SeniorTicket("senior", 160).getDescription());
-console.log(new VIPTicket("VIP", 160).getDescription());
-// Inicializace - zobrazení cen a prázdného košíku při načtení stránky
-const ticket = new AdultTicket("základní", 160);
-wypsaniCen(ticket.getPrice());
-vypsaniKosiku(globalKosik);
-
-//testování
-console.log(new AdultTicket("dospělý", 160).getDescription());
-console.log(new ChildTicket("dětský", 160).getDescription());
-console.log(new SeniorTicket("senior", 160).getDescription());
-console.log(new VIPTicket("VIP", 160).getDescription());
