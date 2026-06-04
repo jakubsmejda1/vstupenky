@@ -109,12 +109,14 @@ class VIPTicket extends Ticket {
         vypsaniKosiku(globalKosik);
     }
 }
+
 function vypsaniCen(price: number): void {
     const adult = new AdultTicket("dospělý", price);
     const child = new ChildTicket("dětský", price);
     const senior = new SeniorTicket("senior", price);
     const vip = new VIPTicket("VIP", price);
     
+    //vypsání cen do Html
     document.getElementById("ticketPriceAdult")!.textContent = adult.getPrice() + " Kč";
     document.getElementById("ticketPriceChild")!.textContent = child.getPrice() + " Kč";
     document.getElementById("ticketPriceSenior")!.textContent = senior.getPrice() + " Kč";
@@ -158,14 +160,14 @@ function pridatDoKosiku(type: string): void {
             break;
     }
 }
-
+// funkce odebrání vstupenky z košíku
 function odebratZKosiku(index: number): void {
     globalKosik.splice(index, 1);
     vypsaniKosiku(globalKosik);
 }
 
 function zaplatit(): void {
-    const totalPrice = globalKosik.reduce((sum, item) => sum + item.getPrice(), 0);
+    const totalPrice = globalKosik.reduce((sum, item) => sum + item.getPrice(), 0); //vypočítá celkovou cenu všech položek v košíku - sum = celková cena, item = aktuální položka v košíku, item.getPrice() = cena této položky
     
     if (globalKosik.length === 0) {
         alert("Váš nákupní košík je prázdný! Vyberte prosím nějaké vstupenky.");
